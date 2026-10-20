@@ -102,30 +102,33 @@ function App() {
           <span className="wordmark-sub">A LITTLE SLICE OF SOMETHING SPECIAL</span>
         </a>
 
-        <button
-          className="icon-button mobile-menu-toggle"
-          aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={mobileMenuOpen}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <MenuIcon />}
-        </button>
+        <div className="header-actions">
+          <button
+            className="cart-button header-cart-button"
+            onClick={() => {
+              setCartOpen(true)
+              closeMobileMenu()
+            }}
+            aria-label={`Your order, ${cartCount} items, subtotal £${cartTotal.toFixed(2)}`}
+          >
+            <ShoppingBag size={17} strokeWidth={1.8} />
+            <span className="header-cart-label">YOUR ORDER</span>
+            <span className="cart-count">{cartCount}</span>
+          </button>
+          <button
+            className="icon-button mobile-menu-toggle"
+            aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X /> : <MenuIcon />}
+          </button>
+        </div>
 
         <nav className={mobileMenuOpen ? 'main-nav nav-open' : 'main-nav'}>
           <a href="#menu" onClick={closeMobileMenu}>THE MENU</a>
           <a href="#story" onClick={closeMobileMenu}>OUR STORY</a>
           <a href="#visit" onClick={closeMobileMenu}>FIND US</a>
-          <button
-            className="cart-button"
-            onClick={() => {
-              setCartOpen(true)
-              closeMobileMenu()
-            }}
-          >
-            <ShoppingBag size={17} strokeWidth={1.8} />
-            <span>YOUR ORDER</span>
-            <span className="cart-count">{cartCount}</span>
-          </button>
         </nav>
       </header>
 
@@ -226,6 +229,11 @@ function App() {
                   >
                     <Plus size={20} />
                   </button>
+                  {(cart[pizza.id] ?? 0) > 0 && (
+                    <span className="pizza-quantity-badge" aria-live="polite">
+                      {cart[pizza.id]} in order
+                    </span>
+                  )}
                 </div>
 
                 <div className="pizza-card-info">
@@ -236,12 +244,33 @@ function App() {
                   <span className="pizza-price">£{pizza.price.toFixed(2)}</span>
                 </div>
 
-                <button
-                  className="add-to-order"
-                  onClick={() => changeQuantity(pizza.id, 1)}
-                >
-                  ADD TO ORDER <ArrowUpRight size={16} />
-                </button>
+                <div className="menu-order-row">
+                  <button
+                    className="add-to-order"
+                    onClick={() => changeQuantity(pizza.id, 1)}
+                    aria-label={`Add one ${pizza.name} to your order`}
+                  >
+                    ADD TO ORDER <ArrowUpRight size={16} />
+                  </button>
+                  <div className="menu-quantity-control" aria-label={`${pizza.name} quantity in order`}>
+                    <button
+                      type="button"
+                      aria-label={`Remove one ${pizza.name}`}
+                      disabled={!(cart[pizza.id] ?? 0)}
+                      onClick={() => changeQuantity(pizza.id, -1)}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span aria-live="polite">{cart[pizza.id] ?? 0}</span>
+                    <button
+                      type="button"
+                      aria-label={`Add one ${pizza.name}`}
+                      onClick={() => changeQuantity(pizza.id, 1)}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
@@ -340,6 +369,14 @@ function App() {
           </a>
         </section>
       </main>
+
+      {cartCount > 0 && !cartOpen && (
+        <button className="mobile-order-bar" onClick={() => setCartOpen(true)}>
+          <span className="mobile-order-bar-count">{cartCount} {cartCount === 1 ? 'item' : 'items'} in your order</span>
+          <span className="mobile-order-bar-total">£{cartTotal.toFixed(2)}</span>
+          <span className="mobile-order-bar-action">VIEW ORDER <ArrowRight size={15} /></span>
+        </button>
+      )}
 
       <footer className="site-footer">
         <div className="footer-top">
