@@ -1,75 +1,100 @@
-# React + TypeScript + Vite
+# PIZZA & SLICE 🍕
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, premium-style restaurant website concept created for **PIZZA & SLICE**, Leicester, UK.
 
-Currently, two official plugins are available:
+This project is an independent portfolio project built to demonstrate modern frontend development, responsive design, and interactive shopping-cart functionality.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> **Project status:** Portfolio demo. Menu items, prices, and ordering features are illustrative and are not connected to a live ordering system.
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Premium restaurant-inspired design
+- Responsive layout for desktop, tablet, and mobile
+- Pizza menu with images and prices
+- Interactive shopping cart
+- Add and remove items and adjust quantities
+- Cart total calculation
+- Restaurant location and contact section
+- Modern icons and visual styling
 
-## Expanding the ESLint configuration
+## 🛠️ Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React** — UI development
+- **TypeScript** — type safety
+- **Vite** — development server and build tooling
+- **CSS** — styling and responsive layouts
+- **Lucide React** — icons
+- **Git and GitHub** — version control
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Install [Node.js](https://nodejs.org/) and Git.
 
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/RaviprasadKolli/pizza-and-slice.git
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Navigate into the project:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cd pizza-and-slice
 ```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in your terminal, usually `http://localhost:5173/`.
+
+## 🧪 Build
+
+Check the project by creating a production build:
+
+```bash
+npm run build
+```
+
+## 📁 Project Structure
+
+```text
+pizza-and-slice/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## 🔒 Demo and Privacy
+
+This is an independent portfolio project. It does not currently process real orders or payments. Confirm permission before publishing business-owned content, photographs, branding, or contact details.
+
+## 👨‍💻 Developer
+
+**Raviprasad Kolli**
+
+GitHub: [RaviprasadKolli](https://github.com/RaviprasadKolli)
+
+---
+
+Built with React, TypeScript, and Vite.
